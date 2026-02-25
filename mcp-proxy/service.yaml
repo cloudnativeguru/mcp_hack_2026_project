@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubescape-mcp
+spec:
+  type: ClusterIP
+  selector:
+    app: kubescape-mcp
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP

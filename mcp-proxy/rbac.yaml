@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubescape-mcp-role
+rules:
+  - apiGroups: ["spdx.softwarecomposition.kubescape.io"]
+    resources: ["vulnerabilitymanifests", "vulnerabilitymanifestsummaries", "vulnerabilitysummaries","workloadconfigurationscans","workloadconfigurationscansummaries"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubescape-mcp-binding
+subjects:
+  - kind: ServiceAccount
+    name: kubescape-mcp-sa
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: kubescape-mcp-role
+  apiGroup: rbac.authorization.k8s.io

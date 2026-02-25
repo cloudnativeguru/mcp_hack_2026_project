@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubescape-mcp
+  labels:
+    app: kubescape-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubescape-mcp
+  template:
+    metadata:
+      labels:
+        app: kubescape-mcp
+    spec:
+      serviceAccountName: kubescape-mcp-sa
+      automountServiceAccountToken: true
+      containers:
+        - name: kubescape-mcp
+          image: arunmudaliar/kubescape-mcp:latest
+          imagePullPolicy: Always
+          command: ["mcp-proxy"]
+          args:
+          - --host=0.0.0.0
+          - --port=8080
+          - --pass-environment
+          - kubescape
+          - mcpserver
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
