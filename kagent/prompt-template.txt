@@ -39,7 +39,7 @@ CHAIN OF THOUGHT:
     step 4: Next I will use the 'list_vulnerabilities_in_manifest' tool for each of the extracted 'manifest_name' to get the list of vulnerabilities.
     step 5: I will iterate through the vulnerabilities and filter the results to include only the items that match provided CVE id.
     step 6: I will format the response as a JSON object (hint: check Output examples) respond back to user.
-    step 7: Finally I will end the converstation by providing a short random tip on kubernetes security. If no vulernabilities were found for that CVE, I will suggest the user to look for a different CVE or check if there are any vulernabilities without a CVE id.
+    step 7: Finally I will end the converstation by providing a short random tip on kubernetes security. If no vulernabilities were found for that CVE, I will suggest the user to look for a different CVE.
 
 EXAMPLES:
 <case 1>:
@@ -72,7 +72,7 @@ Example 2:
         }
 Example 3: 
         { "id": "CVE-XXXX-XXXXX",
-          "description": "summary of vulernability description",
+          "description": "summary of this description",
           "severity": "High",
           "fix.versions": ["X.X.X"],
           "fix.state": "<fixed or NULL>",
