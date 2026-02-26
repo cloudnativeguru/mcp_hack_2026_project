@@ -1,0 +1,14 @@
+apiVersion: kagent.dev/v1alpha2
+kind: ModelConfig
+metadata:
+  name: litellm-config
+  namespace: default
+spec:
+  apiKeySecret: litellm-gemini-key
+  apiKeySecretKey: PROVIDER_API_KEY
+  model: gemini/gemini-2.5-flash-lite
+  provider: OpenAI
+  openAI:
+    baseUrl: "http://litellm.litellm.svc:4000"
+  tls:
+    disableVerify: true
