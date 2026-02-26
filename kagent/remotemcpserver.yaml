@@ -1,0 +1,12 @@
+apiVersion: kagent.dev/v1alpha2
+kind: RemoteMCPServer
+metadata:
+  name: kubescape-mcp-server
+  namespace: kagent
+spec:
+  description: ""
+  protocol: SSE
+  sseReadTimeout: 5m0s
+  terminateOnClose: true
+  timeout: 5s
+  url: http://kubescape-mcp.kagent.svc/sse
